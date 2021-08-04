@@ -127,3 +127,27 @@ def api_delete(team_id) -> str:
     mysql.get_db().commit()
     resp = Response(status=200, mimetype='application/json')
     return resp
+
+@app.errorhandler(404)
+def not_found():
+    """Page not found."""
+    return make_response(
+        'SORRY. THIS PAGE IS NOT FOUND.',
+        404
+     )
+
+@app.errorhandler(400)
+def bad_request():
+    """Bad request."""
+    return make_response(
+        'BAD REQUEST! THIS SERVER DOES NOT SUPPORT YOUR REQUEST.',
+        400
+    )
+
+@app.errorhandler(500)
+def server_error():
+    """Internal server error."""
+    return make_response(
+        'INTERNAL SERVER ERROR.',
+        500
+    )
