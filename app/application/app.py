@@ -1,14 +1,13 @@
-from typing import List, Dict
 import simplejson as json
 from flask import Flask, request, Response, redirect
-from flask import current_app as app
 from flask import render_template
-from pymysql.cursors import DictCursor
 from flaskext.mysql import MySQL
-from app.app import mysql
+from pymysql.cursors import DictCursor
+from app.application.app import ContactForm
 
 
 app = Flask(__name__, template_folder="templates")
+app.config.from_pyfile('config.py')
 mysql = MySQL(cursorclass=DictCursor)
 
 app.config['MYSQL_DATABASE_HOST'] = 'db'
@@ -128,6 +127,12 @@ def api_delete(team_id) -> str:
     resp = Response(status=200, mimetype='application/json')
     return resp
 
+def contact():
+    form = ContactForm()
+    if form.validate_on_submit():
+        return redirect("/", code=302)
+    return render_template("contact.html", form=form)
+
 @app.errorhandler(404)
 def not_found():
     """Page not found."""
@@ -144,10 +149,14 @@ def bad_request():
         400
     )
 
-@app.errorhandler(500)
+@app.errorhandler(400)
 def server_error():
     """Internal server error."""
     return make_response(
         'INTERNAL SERVER ERROR.',
         500
     )
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', debug=True)
