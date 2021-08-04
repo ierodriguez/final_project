@@ -4,5 +4,23 @@
 
 ##Step 2 
 ![Step 2 - Rendering Pages in Flask Using Jinja
-](screenshots/step2Part1.PNG)
+](screenshots/step2.PNG)
+![Step 2 - Rendering Pages in Flask Using Jinja
+](screenshots/step2.1.PNG)
+
+#Step 3 
+![Step 3 - Handling Forms in Flask with Flask-WTF](screenshots/step3forms.PNG)
+![Step 3 - Handling Forms in Flask with Flask-WTF](screenshots/step3contact.PNG)
+
+#Step 4 
+![Step 4 - The Art of Routing in Flask](screenshots/step4.PNG)
+
+#Step 5 
+![Step 3 - Configuring Your Flask App](screenshots/step5.PNG)
+![Step 3 - Configuring Your Flask App](screenshots/step5config.PNG)
+![Step 3 - Configuring Your Flask App](screenshots/step5env.PNG)
+
+#Step 6 
+![Step 6 - Demystifying Flask’s Application Factory](screenshots/step6application.PNG)
+![Step 6 - Demystifying Flask’s Application Factory](screenshots/step6wsgi.PNG)
 
