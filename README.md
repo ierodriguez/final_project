@@ -29,4 +29,8 @@
 ![Step 7 - Organizing Flask Apps with Blueprints](screenshots/step7blueprint.PNG)
 ![Step 7 - Organizing Flask Apps with Blueprints](screenshots/step7init.PNG)
 
+##Step 8 
+![Step 8 - Compiling Frontend JavaScript & Stylesheets Flask](screenshots/step8init.PNG)
+![Step 8 - Compiling Frontend JavaScript & Stylesheets Flask](screenshots/step8blueprint.PNG)
+
 

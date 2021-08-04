@@ -1,14 +1,17 @@
 import simplejson as json
-from flask import Flask, request, Response, redirect
+from flask import Flask, request, Response, redirect, make_response
 from flask import render_template
-from flaskext.mysql import MySQL
 from pymysql.cursors import DictCursor
+from flaskext.mysql import MySQL
+from flask_assets import Environment
 from app.application.app import ContactForm
 
 
 app = Flask(__name__, template_folder="templates")
 app.config.from_pyfile('config.py')
 mysql = MySQL(cursorclass=DictCursor)
+
+assets = Environment(app)
 
 app.config['MYSQL_DATABASE_HOST'] = 'db'
 app.config['MYSQL_DATABASE_USER'] = 'root'
