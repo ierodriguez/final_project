@@ -33,4 +33,8 @@
 ![Step 8 - Compiling Frontend JavaScript & Stylesheets Flask](screenshots/step8init.PNG)
 ![Step 8 - Compiling Frontend JavaScript & Stylesheets Flask](screenshots/step8blueprint.PNG)
 
+##Step 9 
+![Step 9 - Connect Flask to a Database with Flask-SQLAlchemy](screenshots/step9users.PNG)
+![Step 9 - Connect Flask to a Database with Flask-SQLAlchemy](screenshots/step9models.PNG)
+
 
