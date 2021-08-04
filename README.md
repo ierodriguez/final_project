@@ -37,4 +37,9 @@
 ![Step 9 - Connect Flask to a Database with Flask-SQLAlchemy](screenshots/step9users.PNG)
 ![Step 9 - Connect Flask to a Database with Flask-SQLAlchemy](screenshots/step9models.PNG)
 
+##Step 10
+![Step 10 - Handle User Accounts & Authentication in Flask with Flask-Login](screenshots/step10auth.PNG)
+![Step 10 - Handle User Accounts & Authentication in Flask with Flask-Login](screenshots/step10init.PNG)
+![Step 10 - Handle User Accounts & Authentication in Flask with Flask-Login](screenshots/step10routes.PNG)
+![Step 10 - Handle User Accounts & Authentication in Flask with Flask-Login](screenshots/step10config.PNG)
 
