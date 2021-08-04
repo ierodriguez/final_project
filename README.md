@@ -3,10 +3,8 @@
 ![Step 1 - Creating Your First Flask Application](screenshots/step1.png)
 
 ## Step 2 
-![Step 2 - Rendering Pages in Flask Using Jinja
-](screenshots/step2.png)
-![Step 2 - Rendering Pages in Flask Using Jinja
-](screenshots/step2.1.png)
+![Step 2 - Rendering Pages in Flask Using Jinja](screenshots/step2.png)
+![Step 2 - Rendering Pages in Flask Using Jinja](screenshots/step2.1.png)
 
 ## Step 3 
 ![Step 3 - Handling Forms in Flask with Flask-WTF](screenshots/step3forms.png)
