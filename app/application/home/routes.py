@@ -6,11 +6,11 @@ from app.application import mysql
 from app.application.home.forms import ContactForm
 from flask import Blueprint
 
-home_bp = Blueprint(
-    'home_bp', __name__,
+main_bp = Blueprint(
+    'main_bp', __name__,
     template_folder='templates'
 
-@app.route('/', methods=['GET'])
+@main_bp.route('/', methods=['GET'])
 def index():
     user = {'username': "MLB Project"}
     cursor = mysql.get_db().cursor()
@@ -19,7 +19,7 @@ def index():
     return render_template('index.html', title='Home', user=user, teams=result)
 
 
-@app.route('/view/<int:team_id>', methods=['GET'])
+@main_bp.route('/view/<int:team_id>', methods=['GET'])
 def record_view(team_id):
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM mlbteamsTbl WHERE id=%s', team_id)
@@ -27,7 +27,7 @@ def record_view(team_id):
     return render_template('view.html', title='View Form', team=result[0])
 
 
-@app.route('/edit/<int:team_id>', methods=['GET'])
+@main_bp.route('/edit/<int:team_id>', methods=['GET'])
 def form_edit_get(team_id):
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM mlbteamsTbl WHERE id=%s', team_id)
@@ -35,7 +35,7 @@ def form_edit_get(team_id):
     return render_template('edit.html', title='Edit Form', team=result[0])
 
 
-@app.route('/edit/<int:team_id>', methods=['POST'])
+@main_bp.route('/edit/<int:team_id>', methods=['POST'])
 def form_update_post(team_id):
     cursor = mysql.get_db().cursor()
     inputData = (request.form.get('Team'), request.form.get('Payroll_millions'), request.form.get('Wins'),team_id)
@@ -44,12 +44,12 @@ def form_update_post(team_id):
     mysql.get_db().commit()
     return redirect("/", code=302)
 
-@app.route('/teams/new', methods=['GET'])
+@main_bp.route('/teams/new', methods=['GET'])
 def form_insert_get():
     return render_template('new.html', title='New Team Form')
 
 
-@app.route('/teams/new', methods=['POST'])
+@main_bp.route('/teams/new', methods=['POST'])
 def form_insert_post():
     cursor = mysql.get_db().cursor()
     inputData = (request.form.get('Team'), request.form.get('Payroll_millions'), request.form.get('Wins'))
@@ -58,7 +58,7 @@ def form_insert_post():
     mysql.get_db().commit()
     return redirect("/", code=302)
 
-@app.route('/delete/<int:team_id>', methods=['POST'])
+@main_bp.route('/delete/<int:team_id>', methods=['POST'])
 def form_delete_post(team_id):
     cursor = mysql.get_db().cursor()
     sql_delete_query = """DELETE FROM mlbteamsTbl WHERE id = %s """
@@ -67,7 +67,7 @@ def form_delete_post(team_id):
     return redirect("/", code=302)
 
 
-@app.route('/api/v1/teams', methods=['GET'])
+@main_bp.route('/api/v1/teams', methods=['GET'])
 def api_browse() -> str:
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM mlbteamsTbl')
@@ -77,7 +77,7 @@ def api_browse() -> str:
     return resp
 
 
-@app.route('/api/v1/teams/<int:team_id>', methods=['GET'])
+@main_bp.route('/api/v1/teams/<int:team_id>', methods=['GET'])
 def api_retrieve(team_id) -> str:
     cursor = mysql.get_db().cursor()
     cursor.execute('SELECT * FROM mlbteamsTbl WHERE id=%s', team_id)
@@ -86,7 +86,7 @@ def api_retrieve(team_id) -> str:
     resp = Response(json_result, status=200, mimetype='application/json')
     return resp
 
-@app.route('/api/v1/teams/<int:team_id>', methods=['PUT'])
+@main_bp.route('/api/v1/teams/<int:team_id>', methods=['PUT'])
 def api_edit(team_id) -> str:
     cursor = mysql.get_db().cursor()
     content = request.json
@@ -97,7 +97,7 @@ def api_edit(team_id) -> str:
     resp = Response(status=200, mimetype='application/json')
     return resp
 
-@app.route('/api/v1/teams/', methods=['POST'])
+@main_bp.route('/api/v1/teams/', methods=['POST'])
 def api_add() -> str:
 
     content = request.json
@@ -110,7 +110,7 @@ def api_add() -> str:
     resp = Response(status=201, mimetype='application/json')
     return resp
 
-@app.route('/api/v1/teams/<int:team_id>', methods=['DELETE'])
+@main_bp.route('/api/v1/teams/<int:team_id>', methods=['DELETE'])
 def api_delete(team_id) -> str:
     cursor = mysql.get_db().cursor()
     sql_delete_query = """DELETE FROM mlbteamsTbl WHERE id = %s """
@@ -119,7 +119,7 @@ def api_delete(team_id) -> str:
     resp = Response(status=200, mimetype='application/json')
     return resp
 
-@app.errorhandler(404)
+@main_bp.errorhandler(404)
 def not_found():
     """Page not found."""
     return make_response(
@@ -127,7 +127,7 @@ def not_found():
         404
      )
 
-@app.errorhandler(400)
+@main_bp.errorhandler(400)
 def bad_request():
     """Bad request."""
     return make_response(
@@ -135,7 +135,7 @@ def bad_request():
         400
     )
 
-@app.errorhandler(500)
+@main_bp.errorhandler(500)
 def server_error():
     """Internal server error."""
     return make_response(
